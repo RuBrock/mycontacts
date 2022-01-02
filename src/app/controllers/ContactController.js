@@ -1,9 +1,9 @@
-const contactsRepository = require('../repositories/ContactsRepository');
+const ContactsRepository = require('../repositories/ContactsRepository');
 
 class ContactController {
   async index(request, response) {
     // Listar todos os registros
-    const contacts = await contactsRepository.findAll();
+    const contacts = await ContactsRepository.findAll();
 
     response.json(contacts);
   }
@@ -11,7 +11,7 @@ class ContactController {
   async show(request, response) {
     // Obter um registro
     const { id } = request.params;
-    const contact = await contactsRepository.findById(id);
+    const contact = await ContactsRepository.findById(id);
 
     if (!contact) {
       return response.status(404).json({
@@ -22,8 +22,24 @@ class ContactController {
     response.json(contact);
   }
 
-  store() {
+  async store(request, response) {
     // Criar um novo registro
+    const {
+      name, email, phone, category_id,
+    } = request.body;
+
+    const contactExists = await ContactsRepository.findByEmail(email);
+    if (contactExists) {
+      return response.status(400).json({
+        error: 'This e-mail is already been taken',
+      });
+    }
+
+    const contact = await ContactsRepository.create({
+      name, email, phone, category_id,
+    });
+
+    response.json(contact);
   }
 
   update() {
@@ -33,7 +49,7 @@ class ContactController {
   async delete(request, response) {
     // Deletar um registro
     const { id } = request.params;
-    const contact = await contactsRepository.findById(id);
+    const contact = await ContactsRepository.findById(id);
 
     if (!contact) {
       return response.status(404).json({
@@ -41,7 +57,7 @@ class ContactController {
       });
     }
 
-    await contactsRepository.delete(id);
+    await ContactsRepository.delete(id);
     // 204: No Content
     response.sendStatus(204);
   }
