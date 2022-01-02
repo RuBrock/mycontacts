@@ -14,5 +14,10 @@ router.post(
   ContactRequiredFieldsMiddleware.required,
   ContactController.store,
 );
+router.put(
+  '/contacts/:id',
+  ContactRequiredFieldsMiddleware.required,
+  ContactController.update,
+);
 
 module.exports = router;
