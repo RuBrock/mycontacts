@@ -1,4 +1,4 @@
-class ContactRequiredFieldsMiddleware {
+class CategoryRequiredFieldsMiddleware {
   required(request, response, next) {
     const { name } = request.body;
 
@@ -10,4 +10,4 @@ class ContactRequiredFieldsMiddleware {
   }
 }
 
-module.exports = new ContactRequiredFieldsMiddleware();
+module.exports = new CategoryRequiredFieldsMiddleware();
