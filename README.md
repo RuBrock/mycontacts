@@ -1,5 +1,5 @@
 ## myContacts - Store Contacts
-Projeto direcionado pelo curso JStack, criar uma aplicação NodeJS onde possam ser armazenados contatos.
+Projeto direcionado pelo curso JStack, criar uma aplicação NodeJS onde possa ser feito um CRUD completo de contatos.
 
 ---
 
