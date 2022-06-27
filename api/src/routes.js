@@ -7,6 +7,7 @@ const ContactRequiredFieldsMiddleware = require('./app/middlewares/ContactRequir
 
 const router = Router();
 
+// CATEGORIES Routes
 router.get('/categories', CategoryController.index);
 router.get('/categories/:id', CategoryController.show);
 router.post(
@@ -21,6 +22,7 @@ router.put(
 );
 router.delete('/categories/:id', CategoryController.delete);
 
+// CONTACTS Routes
 router.get('/contacts', ContactController.index);
 router.get('/contacts/:id', ContactController.show);
 router.post(
