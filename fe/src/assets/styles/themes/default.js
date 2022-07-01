@@ -9,9 +9,9 @@ export default {
     },
     neutral: {
       white: '#FFF',
-      lighter: '##DCD8D9',
+      lighter: '#CCC',
       light: '#BCBCBC',
-      main: '##8C8C8C',
+      main: '#8C8C8C',
       dark: '#222222',
       black: '#000',
     },
