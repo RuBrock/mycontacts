@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { Container } from './style';
+import { Container } from './styles';
 
 import arrow from '../../assets/images/icons/arrow.svg';
 
