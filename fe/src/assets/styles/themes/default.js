@@ -7,6 +7,11 @@ export default {
       main: '#5061FC',
       dark: '#3346F0',
     },
+    danger: {
+      light: '#F97171',
+      main: '#FC5050',
+      dark: '#F63131',
+    },
     neutral: {
       white: '#FFF',
       lighter: '#CCC',
@@ -16,4 +21,5 @@ export default {
       black: '#000',
     },
   },
+  boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.04)',
 };

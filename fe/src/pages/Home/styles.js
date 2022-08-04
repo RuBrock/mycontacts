@@ -15,7 +15,7 @@ export const InputSearchContainer = styled.div`
     border: none;
     border-radius: 25px;
     padding: 0 16px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
+    box-shadow: ${({ theme }) => theme.boxShadow};
     outline: 0;
 
     &::placeholder {
@@ -73,7 +73,7 @@ export const ListContainer = styled.div`
 
 export const Card = styled.div`
   background: ${({ theme }) => theme.colors.neutral.white};
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
+  box-shadow: ${({ theme }) => theme.boxShadow};
   border-radius: 4px;
   padding: 16px;
   display: flex;
