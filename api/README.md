@@ -14,8 +14,15 @@ docker run --name pg -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -p 5432:543
 docker exec -it pg bash
 ```
 
-E por fim, executar os comandos do arquivo com o Schema dentro de *src/database/schema.sql*
+```bash
+psql -U root
+```
+Criar o DATABASE de acordo com o comnado do arquivo schema dentro de *src/database/schema.sql*
 
+```bash
+\c mycontacts
+```
+Criar as TABLEs de acordo com o comnado do arquivo schema dentro de *src/database/schema.sql*
 
 
 Utilize o gerenciador de pacotes de sua escolha (npm, yarn, etc.) e instale as dependências:
