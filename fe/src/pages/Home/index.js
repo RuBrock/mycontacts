@@ -35,7 +35,19 @@ export default function Home() {
 
         setContacts(contactsList);
       } catch (error) {
+        console.log('Name: ', error.name);
+        console.log('Message: ', error.message);
+        console.log('Response: ', error.response);
+        console.log('Body: ', error.body);
         console.log(error);
+        /**
+          if (error instanceof APIError) {
+            // mostrar uma mensagem para o usuário
+          } else {
+            // mostrar uma mensagem para o usuário
+            // enviar os dados do erro para um serviço de log
+          }
+        */
       } finally {
         setIsLoading(false);
       }
