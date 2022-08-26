@@ -1,4 +1,5 @@
-import { useState } from 'react';
+/* eslint-disable no-shadow */
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import isEmailValid from '../../utils/isEmailValid';
@@ -11,18 +12,32 @@ import FormGroup from '../FormGroup';
 import Input from '../Input';
 import Select from '../Select';
 import Button from '../Button';
+import CategoriesService from '../../services/CategoriesService';
 
 export default function ContactForm({ buttonLabel }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState([]);
 
   const {
     errors, setError, removeError, getErrorMessageByFieldName,
   } = useErrors();
 
   const isFormValid = (name && errors.length === 0);
+
+  useEffect(() => {
+    async function loadCategories() {
+      try {
+        const categoriesList = await CategoriesService.listCategories();
+
+        setCategories(categoriesList);
+      } catch {}
+    }
+
+    loadCategories();
+  }, []);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -91,9 +106,16 @@ export default function ContactForm({ buttonLabel }) {
           value={category}
           onChange={(event) => setCategory(event.target.value)}
         >
-          <option value="instagram">Instagram</option>
-          <option value="linkedin">Linkedin</option>
-          <option value="discord">Discord</option>
+          <option value="">Sem categoria</option>
+
+          {categories.map((category) => (
+            <option
+              key={category.id}
+              value={category.id}
+            >
+              {category.name}
+            </option>
+          ))}
         </Select>
       </FormGroup>
 
