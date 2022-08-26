@@ -21,7 +21,7 @@ export default styled.button`
   }
 
   &:disabled {
-    background: ${({ theme }) => theme.colors.neutral.lighter};
+    background: ${({ theme }) => theme.colors.neutral.light};
     cursor: default;
   }
 
