@@ -14,11 +14,11 @@ import Select from '../Select';
 import Button from '../Button';
 import CategoriesService from '../../services/CategoriesService';
 
-export default function ContactForm({ buttonLabel }) {
+export default function ContactForm({ buttonLabel, onSubmit }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [category, setCategory] = useState('');
+  const [categoryId, setCategoryId] = useState('');
   const [categories, setCategories] = useState([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
 
@@ -69,9 +69,9 @@ export default function ContactForm({ buttonLabel }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // console.log({
-    //   name, email, phone: phone.replace(/\D/g, ''), category,
-    // });
+    onSubmit({
+      name, email, phone: phone.replace(/\D/g, ''), categoryId,
+    });
   };
 
   return (
@@ -106,8 +106,8 @@ export default function ContactForm({ buttonLabel }) {
 
       <FormGroup isLoading={isLoadingCategories}>
         <Select
-          value={category}
-          onChange={(event) => setCategory(event.target.value)}
+          value={categoryId}
+          onChange={(event) => setCategoryId(event.target.value)}
           disabled={isLoadingCategories}
         >
           <option value="">Sem categoria</option>
@@ -132,4 +132,5 @@ export default function ContactForm({ buttonLabel }) {
 
 ContactForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
