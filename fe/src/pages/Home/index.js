@@ -168,8 +168,8 @@ export default function Home() {
                   )}
                 </div>
 
-                <span>{contact.email}</span>
-                <span>{formatPhone(contact.phone)}</span>
+                {contact.email && (<span>{contact.email}</span>)}
+                {contact.phone && (<span>{formatPhone(contact.phone)}</span>)}
               </div>
 
               <div className="actions">
