@@ -5,8 +5,8 @@ export const StyledButton = styled.button`
   padding: 0 16px;
   background: ${({ theme }) => theme.colors.primary.main};
   border: none;
-  border-radius: 4px;
-  box-shadow: ${({ theme }) => theme.boxShadow};
+  border-radius: ${({ theme }) => theme.borderRadius.main};
+  box-shadow: ${({ theme }) => theme.boxShadow.main};
   font-size: 16px;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.neutral.white};

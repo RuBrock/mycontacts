@@ -17,8 +17,8 @@ export const Container = styled.div`
   width: 100%;
   max-width: 450px;
   background-color: ${({ theme }) => theme.colors.neutral.white};
-  box-shadow: ${({ theme }) => theme.boxShadow};
-  border-radius: 4px;
+  box-shadow: ${({ theme }) => theme.boxShadow.main};
+  border-radius: ${({ theme }) => theme.borderRadius.main};
   padding: 24px;
 
   h1 {

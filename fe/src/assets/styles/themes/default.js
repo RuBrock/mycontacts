@@ -21,5 +21,10 @@ export default {
       black: '#000',
     },
   },
-  boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.04)',
+  borderRadius: {
+    main: '4px',
+  },
+  boxShadow: {
+    main: '0px 4px 10px rgba(0, 0, 0, 0.04)',
+  },
 };

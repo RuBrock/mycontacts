@@ -16,7 +16,7 @@ export const InputSearchContainer = styled.div`
     border: none;
     border-radius: 25px;
     padding: 0 16px;
-    box-shadow: ${({ theme }) => theme.boxShadow};
+    box-shadow: ${({ theme }) => theme.boxShadow.main};
     outline: 0;
 
     &::placeholder {
@@ -44,7 +44,7 @@ export const Header = styled.header`
     font-weight: 700;
     padding: 8px 16px;
     border: 2px solid ${({ theme }) => theme.colors.primary.main};
-    border-radius: 4px;
+    border-radius: ${({ theme }) => theme.borderRadius.main};
     transition: all 0.3s ease-in;
 
     &:hover {
@@ -78,8 +78,8 @@ export const ListHeader = styled.header`
 
 export const Card = styled.div`
   background: ${({ theme }) => theme.colors.neutral.white};
-  box-shadow: ${({ theme }) => theme.boxShadow};
-  border-radius: 4px;
+  box-shadow: ${({ theme }) => theme.boxShadow.main};
+  border-radius: ${({ theme }) => theme.borderRadius.main};
   padding: 16px;
   display: flex;
   align-items: center;
@@ -100,7 +100,7 @@ export const Card = styled.div`
         font-weight: 700;
         text-transform: uppercase;
         padding: 4px;
-        border-radius: 4px;
+        border-radius: ${({ theme }) => theme.borderRadius.main};
         margin-left: 8px;
       }
     }
