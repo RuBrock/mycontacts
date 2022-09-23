@@ -31,13 +31,13 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
 
   const isFormValid = (name && errors.length === 0);
 
-  // return what current value must be
+  // hook return what current value must be
   useImperativeHandle(ref, () => ({
     setFieldsValues: (contact) => {
-      setName(contact.name);
-      setEmail(contact.email);
-      setPhone(contact.phone);
-      setCategoryId(contact.category_id);
+      setName(contact.name ?? '');
+      setEmail(contact.email ?? '');
+      setPhone(formatPhone(contact.phone ?? ''));
+      setCategoryId(contact.category_id ?? '');
     },
   }), []);
 
