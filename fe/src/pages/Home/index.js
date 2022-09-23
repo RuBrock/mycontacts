@@ -27,7 +27,7 @@ import Loader from '../../components/Loader';
 import Button from '../../components/Button';
 
 import formatPhone from '../../utils/formatPhone';
-import ContactService from '../../services/ContactService';
+import ContactsService from '../../services/ContactsService';
 
 export default function Home() {
   const [contacts, setContacts] = useState([]);
@@ -46,7 +46,7 @@ export default function Home() {
     try {
       setIsLoading(true);
 
-      const contactsList = await ContactService.listContacts(orderBy);
+      const contactsList = await ContactsService.listContacts(orderBy);
 
       setHasError(false);
       setContacts(contactsList);
