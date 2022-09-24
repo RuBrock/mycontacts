@@ -8,6 +8,7 @@ import Button from '../Button';
 export default function Modal({
   danger,
   visible,
+  isLoading,
   title,
   children,
   cancelLabel,
@@ -33,6 +34,7 @@ export default function Modal({
             type="button"
             className="cancel-cta"
             onClick={onCancel}
+            disabled={isLoading}
           >
             {cancelLabel}
           </button>
@@ -40,6 +42,7 @@ export default function Modal({
           <Button
             type="button"
             danger={danger}
+            isLoading={isLoading}
             onClick={onConfirm}
           >
             {confirmLabel}
@@ -54,6 +57,7 @@ export default function Modal({
 Modal.propTypes = {
   danger: PropTypes.bool,
   visible: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
   title: PropTypes.string.isRequired,
   cancelLabel: PropTypes.string,
   onCancel: PropTypes.func.isRequired,
@@ -66,5 +70,6 @@ Modal.defaultProps = {
   cancelLabel: 'Cancelar',
   confirmLabel: 'Confirmar',
   danger: false,
+  isLoading: false,
   children: null,
 };

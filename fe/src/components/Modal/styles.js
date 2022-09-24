@@ -47,5 +47,9 @@ export const Footer = styled.footer`
     color: ${({ theme }) => theme.colors.neutral.light};
     background: transparent;
     border: none;
+
+    &[disabled] {
+      cursor: not-allowed;
+    }
   }
 `;
