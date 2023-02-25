@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import useIsMounted from '../../hooks/useIsMounted';
+import useSafeAsyncAction from '../../hooks/useSafeAsyncAction';
 
 import PageHeader from '../../components/PageHeader';
 import ContactForm from '../../components/ContactForm';
@@ -17,31 +17,31 @@ export default function EditContact() {
   const { id } = useParams();
   const history = useHistory();
 
-  const isMounted = useIsMounted();
+  const safeAsyncAction = useSafeAsyncAction();
 
   useEffect(() => {
     async function loadContact() {
       try {
         const contact = await ContactsService.getContactById(id);
 
-        if (isMounted()) {
+        safeAsyncAction(() => {
           contactFormRef.current.setFieldsValues(contact);
           setContactName(contact.name);
           setIsLoading(false);
-        }
+        });
       } catch {
-        if (isMounted()) {
+        safeAsyncAction(() => {
           history.push('/');
           toast({
             type: 'danger',
             text: 'Contato não encontrado!',
           });
-        }
+        });
       }
     }
 
     loadContact();
-  }, [id, history, isMounted]);
+  }, [id, history, safeAsyncAction]);
 
   const handleSubmit = async (formData) => {
     try {
