@@ -1,3 +1,4 @@
+import CategoryMapper from './mappers/CategoryMapper';
 import HttpClient from './utils/HttpClient';
 
 class CategoriesService {
@@ -6,7 +7,27 @@ class CategoriesService {
   }
 
   async listCategories() {
-    return this.httpClient.get('/categories');
+    const categories = await this.httpClient.get('/categories');
+    return categories.map(CategoryMapper.toDomain);
+  }
+
+  async getCategoryById(id) {
+    const category = await this.httpClient.get(`/categories/${id}`);
+    return CategoryMapper.toDomain(category);
+  }
+
+  createCategory(category) {
+    const body = CategoryMapper.toPersistence(category);
+    return this.httpClient.post('/categories', { body });
+  }
+
+  updateCategory(id, category) {
+    const body = CategoryMapper.toPersistence(category);
+    return this.httpClient.put(`/categories/${id}`, { body });
+  }
+
+  deleteCategory(id) {
+    return this.httpClient.delete(`/categories/${id}`);
   }
 }
 
