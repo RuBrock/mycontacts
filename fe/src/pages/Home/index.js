@@ -1,12 +1,18 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable no-nested-ternary */
-
 import { Link } from 'react-router-dom';
+
+import Loader from '../../components/Loader';
+import Button from '../../components/Button';
+import Modal from '../../components/Modal';
+
+import InputSearch from './components/InputSearch';
+import Header from './components/Header';
+
+import formatPhone from '../../utils/formatPhone';
+import useHome from './useHome';
 
 import {
   Container,
-  InputSearchContainer,
-  Header,
   ListHeader,
   Card,
   ErrorContainer,
@@ -20,13 +26,6 @@ import trash from '../../assets/images/icons/trash.svg';
 import sad from '../../assets/images/sad.svg';
 import emptyBox from '../../assets/images/empty-box.svg';
 import magnifierQuestion from '../../assets/images/magnifier-question.svg';
-
-import Loader from '../../components/Loader';
-import Button from '../../components/Button';
-import Modal from '../../components/Modal';
-
-import formatPhone from '../../utils/formatPhone';
-import useHome from './useHome';
 
 export default function Home() {
   const {
@@ -51,51 +50,18 @@ export default function Home() {
     <Container>
       <Loader isLoading={isLoading} />
 
-      <Modal
-        danger
-        visible={isDeleteModalVisible}
-        isLoading={isLoadingDelete}
-        title={`Tem certeza que deseja remover o contato "${contactBeingDeleted?.name}"?`}
-        confirmLabel="Deletar"
-        onCancel={handleCloseDeleteModal}
-        onConfirm={handleConfirmDeleteContact}
-      >
-        <p>
-          Esta ação não poderá ser desfeita!
-        </p>
-      </Modal>
-
       {contacts.length > 0 && (
-        <InputSearchContainer>
-          <input
-            value={searchTerm}
-            type="text"
-            placeholder="Pesquisar contato..."
-            onChange={handleChangeSearchTerm}
-          />
-        </InputSearchContainer>
+        <InputSearch
+          value={searchTerm}
+          onChange={handleChangeSearchTerm}
+        />
       )}
 
       <Header
-        justifyContent={
-          hasError
-            ? 'flex-end'
-            : (
-              contacts.length > 0
-                ? 'space-between'
-                : 'center'
-            )
-        }
-      >
-        {(!hasError && contacts.length > 0) && (
-          <strong>
-            {filteredContacts.length}
-            {filteredContacts.length === 1 ? ' contato' : ' contatos'}
-          </strong>
-        )}
-
-        <Link to="/new">Novo Contato</Link>
-      </Header>
+        hasError={hasError}
+        qtyOfContacts={contacts.length}
+        qtyOfFilteredContacts={filteredContacts.length}
+      />
 
       {hasError && (
         <ErrorContainer>
@@ -171,6 +137,20 @@ export default function Home() {
               </div>
             </Card>
           ))}
+
+          <Modal
+            danger
+            visible={isDeleteModalVisible}
+            isLoading={isLoadingDelete}
+            title={`Tem certeza que deseja remover o contato "${contactBeingDeleted?.name}"?`}
+            confirmLabel="Deletar"
+            onCancel={handleCloseDeleteModal}
+            onConfirm={handleConfirmDeleteContact}
+          >
+            <p>
+              Esta ação não poderá ser desfeita!
+            </p>
+          </Modal>
         </>
       )}
     </Container>
